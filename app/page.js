@@ -106,9 +106,9 @@ export default function Home() {
             />
           </div>
           <div className="md:col-span-3 px-8 py-12 lg:px-12 flex flex-col justify-center bg-white">
-            <h3 className="text-sm tracking-[0.4rem] text-black font-bold uppercase">
+            <h2 className="text-sm tracking-[0.4rem] text-black font-bold uppercase">
               ABOUT OUR FURNITURE
-            </h3>
+            </h2>
             <p className="mt-4 text-gray-500 text-[15px] leading-relaxed">
               Our multifunctional collection blends design and function to suit your individual taste. 
               Make each room unique, or pick a cohesive theme that best express your interests and what 

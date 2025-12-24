@@ -5,7 +5,7 @@ import { useState } from "react"
 
 export default function Navbar() {
 const [openMenu, setOpenMenu] = useState(false);
-console.log(openMenu)
+
   return (
     <header className="w-full top-0 absolute z-50">
       <div className="hidden md:block w-full p-8">
