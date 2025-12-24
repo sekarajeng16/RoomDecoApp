@@ -1,65 +1,131 @@
-import Image from "next/image";
+
+'use client'
+import { useState } from "react";
+import { Slider, SliderContent, SliderImage } from "./components/Slider";
+
+
 
 export default function Home() {
+
+  const [currentState, setCurrentState] = useState(1);
+
+  const handleNextSlide = (value) => {
+    if(value == 3){
+      setCurrentState(1)
+    }
+    else{
+       var newState = value + 1
+      setCurrentState(newState)
+    }
+    
+  }
+
+  const handlePrevSlide = (value) => {
+    if(value == 1){
+      setCurrentState(3)
+    }
+    else{
+      var newState = value -= 1
+      setCurrentState(newState)
+    }
+
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="relative">
+      <section>
+        <div className="">
+          {currentState == 1 ? 
+            <Slider key={1}>
+              <SliderImage onNext={() => handleNextSlide(1)} onPrev={() => handlePrevSlide(1)} src="/images/desktop-image-hero-1.jpg"/>
+              <SliderContent onNext={() => handleNextSlide(1)} onPrev={() => handlePrevSlide(1)} title={"Dicover Innovate Ways to Decorate"}>
+                <div className="flex flex-col gap-3 mt-8 space-y-5 px-10 md:px-35">
+                  <p>
+                    We provide unmatched quality, comfort, and style for property owners across the country. Our experts combine form and function 
+                    in bringing your vision to life. Create a room in your own style with our collection and make your property a reflection of you 
+                    and what you love.
+                  </p>
+                  <button className="flex gap-3 font-semibold cursor-pointer">
+                      <span className="tracking-[0.4rem] text-black hover:color-secondary text-lg ">SHOP NOW</span>
+                      <img src="/images/icon-arrow.svg" className="w-auto" alt="arrow-shop-now" />
+                  </button>
+                </div>
+              </SliderContent>
+            </Slider>
+
+            : currentState == 2 ?
+            <Slider key={2}>
+              <SliderImage onNext={() => handleNextSlide(2)} onPrev={() => handlePrevSlide(2)} src="/images/desktop-image-hero-2.jpg"/>
+              <SliderContent onNext={() => handleNextSlide(2)} onPrev={() => handlePrevSlide(2)} title={"We are available across the globe"}>
+                <div className="flex flex-col gap-3 mt-8 space-y-5 px-10 md:px-35">
+                  <p>
+                    With stores all over the world, it's easy for you to find furniture for your home or place of business. 
+                    Locally, we’re in most major cities throughout the country. 
+                    Find the branch nearest you using our store locator. Any questions? Don't hesitate to contact us today.
+                  </p>
+                  <button className="flex gap-3 font-semibold cursor-pointer">
+                      <span className="tracking-[0.4rem] text-black hover:color-secondary text-lg ">SHOP NOW</span>
+                      <img src="/images/icon-arrow.svg" className="w-auto" alt="arrow-shop-now" />
+                  </button>
+                </div>
+              </SliderContent>
+            </Slider>
+          :
+
+            <Slider key={3}>
+              <SliderImage onNext={() => handleNextSlide(3)} onPrev={() => handlePrevSlide(3)} src="/images/desktop-image-hero-3.jpg"/>
+              <SliderContent onNext={() => handleNextSlide(3)} onPrev={() => handlePrevSlide(3)} title={"Manufactured with best materials"}>
+                <div className="flex flex-col gap-3 mt-8 space-y-5 px-10 md:px-35">
+                  <p>
+                     Our modern furniture store provide a high level of quality. 
+                     Our company has invested in advanced technology to ensure that every product is made 
+                     as perfect and as consistent as possible. With three decades of experience in this industry, 
+                     we understand what customers want for their home and office.
+                  </p>
+                  <button className="flex gap-3 font-semibold cursor-pointer">
+                      <span className="tracking-[0.4rem] text-black hover:color-secondary text-lg ">SHOP NOW</span>
+                      <img src="/images/icon-arrow.svg" className="w-auto" alt="arrow-shop-now" />
+                  </button>
+                </div>
+              </SliderContent>
+            </Slider>
+        }
+          
+
+          
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+        
+      </section>
+      <section>
+        <div className="grid grid-cols-1 md:grid-cols-7 w-full">
+          <div className="md:col-span-2">
+            <img 
+              src="/images/image-about-dark.jpg" 
+              className="w-full h-full object-cover block" 
+              alt="Dark interior"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+          <div className="md:col-span-3 px-8 py-12 lg:px-12 flex flex-col justify-center bg-white">
+            <h3 className="text-sm tracking-[0.4rem] text-black font-bold uppercase">
+              ABOUT OUR FURNITURE
+            </h3>
+            <p className="mt-4 text-gray-500 text-[15px] leading-relaxed">
+              Our multifunctional collection blends design and function to suit your individual taste. 
+              Make each room unique, or pick a cohesive theme that best express your interests and what 
+              inspires you. Find the furniture pieces you need, from traditional to contemporary styles 
+              or anything in between.
+            </p>
+          </div>
+          <div className="md:col-span-2">
+            <img 
+              src="/images/image-about-light.jpg" 
+              className="w-full h-full object-cover block" 
+              alt="Light interior"
+            />
+          </div>
+
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
